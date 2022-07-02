@@ -4,22 +4,20 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mockito;
-import ru.netology.entity.Country;
-import ru.netology.entity.Location;
-import ru.netology.geo.GeoService;
-import ru.netology.i18n.LocalizationService;
-import ru.netology.sender.MessageSender;
-import ru.netology.sender.MessageSenderImpl;
-
-import javax.xml.transform.Source;
-import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-public class testMessageSender {
+import ru.netology.sender.*;
+import ru.netology.entity.Country;
+import ru.netology.entity.Location;
+import ru.netology.geo.GeoService;
+import ru.netology.i18n.LocalizationService;
+
+
+public class MessageSenderTest {
     @AfterEach
-    void print() {
+    private void print() {
         System.out.println();
     }
 

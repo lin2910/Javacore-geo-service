@@ -3,17 +3,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import ru.netology.entity.Country;
+import ru.netology.geo.*;
 import ru.netology.entity.Location;
-import ru.netology.geo.GeoService;
-import ru.netology.geo.GeoServiceImpl;
-
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class testGeoService {
-    GeoService geoService;
+import static ru.netology.entity.Country.RUSSIA;
+import static ru.netology.entity.Country.USA;
+
+public class GeoServiceTest {
+    private GeoService geoService;
 
     @BeforeEach
     public void start() {
@@ -40,10 +40,10 @@ public class testGeoService {
                 Arguments.of("", null),
                 Arguments.of("199.0.0.1", null),
                 Arguments.of("127.0.0.1", new Location(null, null, null, 0)),
-                Arguments.of("172.0.32.11", new Location("Moscow", Country.RUSSIA, "Lenina", 15)),
-                Arguments.of("96.44.183.149", new Location("New York", Country.USA, " 10th Avenue", 32)),
-                Arguments.of("172.0.0.1", new Location("Moscow", Country.RUSSIA, null, 0)),
-                Arguments.of("96.0.0.1", new Location("New York", Country.USA, null, 0))
+                Arguments.of("172.0.32.11", new Location("Moscow", RUSSIA, "Lenina", 15)),
+                Arguments.of("96.44.183.149", new Location("New York", USA, " 10th Avenue", 32)),
+                Arguments.of("172.0.0.1", new Location("Moscow", RUSSIA, null, 0)),
+                Arguments.of("96.0.0.1", new Location("New York", USA, null, 0))
         );
     }
 
@@ -55,6 +55,6 @@ public class testGeoService {
         Exception exception = assertThrows(RuntimeException.class, () -> geoService.byCoordinates(a, b));
         String result = exception.getMessage();
 
-        assertTrue(result.contains(expected));
+        assertTrue(result.equals(expected));
     }
 }

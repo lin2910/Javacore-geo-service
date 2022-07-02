@@ -2,12 +2,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
-import ru.netology.entity.Country;
-import ru.netology.i18n.LocalizationService;
-import ru.netology.i18n.LocalizationServiceImpl;
 
-public class testLocalizationService {
-    LocalizationService localizationService;
+import ru.netology.i18n.*;
+import ru.netology.entity.Country;
+
+public class LocalizationServiceTest {
+    private LocalizationService localizationService;
 
     @BeforeEach
     public void initTest() {
@@ -16,7 +16,7 @@ public class testLocalizationService {
 
     @ParameterizedTest
     @EnumSource(Country.class)
-    void testLocaleCountry(Country country) {
+    public void testLocaleCountry(Country country) {
         String expected;
         if (country == Country.RUSSIA)
             expected = "Добро пожаловать";
